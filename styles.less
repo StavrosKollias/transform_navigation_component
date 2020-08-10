@@ -107,6 +107,10 @@ body {
   background-color: fade(@black, 80);
   animation: animateNavBar 3s forwards;
 
+  @media only screen and (max-width: @tablet) {
+    height: auto;
+  }
+
   &.active {
     .display-flex();
   }
@@ -116,6 +120,11 @@ body {
     width: 100%;
 
     justify-content: space-around;
+
+    @media only screen and (max-width: @tablet) {
+      flex-direction: column;
+      height: 100vh;
+    }
 
     .nav-menu-btn {
       &.active-nav-btn {
