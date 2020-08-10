@@ -22,34 +22,52 @@ var getValCssPropertyElement = function (elem, style) {
   return window.getComputedStyle(elem).getPropertyValue(style);
 };
 
+function setPropertyStyle(property, value) {
+  property = value;
+}
+
+function getDataIndexFromElement(element) {
+  return element.dataset.index;
+}
+
+function getClassListFromElement(element) {
+  return element.classList.length;
+}
+
 //-----------------------------------
 //           handlers
 //-----------------------------------
 
 function handleCliackMobileNavigationBtn(element) {
-  const sectionContainer = getDomElement(".sections-container");
-  const navbar = getDomElement(".nav-bar");
-  if (element.classList.length == 1) {
+  const elements = getElementsForMobileNavClick();
+  const classListElement = getClassListFromElement(element);
+  if (classListElement == 1) {
     addClassToElement(element, "active");
-    addClassToElement(sectionContainer, "active");
-    addClassToElement(navbar, "active");
+    addClassToElement(elements.sectionContainer, "active");
+    addClassToElement(elements.navbar, "active");
   } else {
     removeClassFromElement(element, "active");
-    removeClassFromElement(sectionContainer, "active");
-    removeClassFromElement(navbar, "active");
+    removeClassFromElement(elements.sectionContainer, "active");
+    removeClassFromElement(elements.navbar, "active");
   }
+}
+
+function getElementsForMobileNavClick() {
+  const sectionContainer = getDomElement(".sections-container");
+  const navbar = getDomElement(".nav-bar");
+  return { navbar: navbar, sectionContainer: sectionContainer };
 }
 
 function handleClickNavBtn(element) {
   const mobileNavBtn = getDomElement(".nav-btn");
-  const elementIndex = element.dataset.index;
+  const elementIndex = getDataIndexFromElement(element);
   const newSection = findSection(elementIndex);
   const transformval = getValCssPropertyElement(newSection, "transform");
   const activeSection = getDomElement(".active-section");
   const activeNavBtn = getDomElement(".active-nav-btn");
   removeClassFromElement(activeNavBtn, "active-nav-btn");
   removeClassFromElement(activeSection, "active-section");
-  activeSection.style.transform = transformval;
+  setPropertyStyle(activeSection.style.transform, transformval);
   addClassToElement(element, "active-nav-btn");
   addClassToElement(newSection, "active-section");
   handleCliackMobileNavigationBtn(mobileNavBtn);
