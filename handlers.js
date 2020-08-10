@@ -56,11 +56,3 @@ function findSection(index) {
 
   return desiredSection;
 }
-
-window.addEventListener("click", (e) => {
-  const navMenuButton = document.querySelectorAll(".nav-menu-btn");
-  const className = e.target.className;
-  if (className == "home") {
-    console.log("yes");
-  }
-});
