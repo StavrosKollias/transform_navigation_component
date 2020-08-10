@@ -18,6 +18,10 @@ const removeClassFromElement = (element, className) => {
   element.classList.remove(className);
 };
 
+var getValCssPropertyElement = function (elem, style) {
+  return window.getComputedStyle(elem).getPropertyValue(style);
+};
+
 //-----------------------------------
 //           handlers
 //-----------------------------------
@@ -38,11 +42,15 @@ function handleCliackMobileNavigationBtn(element) {
 
 function handleClickNavBtn(element) {
   const mobileNavBtn = getDomElement(".nav-btn");
-  addClassToElement(element, "active");
   const elementIndex = element.dataset.index;
   const newSection = findSection(elementIndex);
+  const transformval = getValCssPropertyElement(newSection, "transform");
   const activeSection = getDomElement(".active-section");
+  const activeNavBtn = getDomElement(".active-nav-btn");
+  removeClassFromElement(activeNavBtn, "active-nav-btn");
   removeClassFromElement(activeSection, "active-section");
+  activeSection.style.transform = transformval;
+  addClassToElement(element, "active-nav-btn");
   addClassToElement(newSection, "active-section");
   handleCliackMobileNavigationBtn(mobileNavBtn);
 }

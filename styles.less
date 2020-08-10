@@ -33,6 +33,7 @@ html {
 body {
   margin: 0;
   background-color: @gray;
+  overflow-x: hidden;
 }
 
 .nav-btn {
@@ -117,7 +118,7 @@ body {
     justify-content: space-around;
 
     .nav-menu-btn {
-      &.active {
+      &.active-nav-btn {
         position: relative;
         &::after {
           content: "";
@@ -156,8 +157,8 @@ body {
   .section-item {
     .display-flex();
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: @blue;
     box-shadow: 0 -1rem 1rem fade(@black, 25);
     color: @white;
