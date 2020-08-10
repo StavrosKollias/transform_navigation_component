@@ -22,8 +22,8 @@ var getValCssPropertyElement = function (elem, style) {
   return window.getComputedStyle(elem).getPropertyValue(style);
 };
 
-function setPropertyStyle(property, value) {
-  property = value;
+function setPropertyStyleTransform(elementProperty, value) {
+  elementProperty.transform = value;
 }
 
 function getDataIndexFromElement(element) {
@@ -67,7 +67,7 @@ function handleClickNavBtn(element) {
   const activeNavBtn = getDomElement(".active-nav-btn");
   removeClassFromElement(activeNavBtn, "active-nav-btn");
   removeClassFromElement(activeSection, "active-section");
-  setPropertyStyle(activeSection.style.transform, transformval);
+  setPropertyStyleTransform(activeSection.style, transformval);
   addClassToElement(element, "active-nav-btn");
   addClassToElement(newSection, "active-section");
   handleCliackMobileNavigationBtn(mobileNavBtn);

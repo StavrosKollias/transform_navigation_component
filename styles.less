@@ -179,14 +179,10 @@ body {
 
 // Create a "guarded" mixin with conditional test
 .section-item-loop (@i) when (@i > 0) {
-  // Output the current counter
   .section-item:nth-child(@{i}) {
     background: hsl(@i * 10, 50%, 50%);
-    transform: translateZ(@i * -90px);
+    transform: translateZ((@i - 1) * -90px);
   }
-
-  // The mixin calls itself, recursively,
-  // until the "@i > 0" condition is no longer met
   .section-item-loop(@i - 1);
 }
 
