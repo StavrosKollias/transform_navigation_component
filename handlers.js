@@ -22,7 +22,7 @@ const removeClassFromElement = (element, className) => {
 //           handlers
 //-----------------------------------
 
-function handleCliackNavigationBtn(element) {
+function handleCliackMobileNavigationBtn(element) {
   const sectionContainer = getDomElement(".sections-container");
   const navbar = getDomElement(".nav-bar");
   if (element.classList.length == 1) {
@@ -34,6 +34,27 @@ function handleCliackNavigationBtn(element) {
     removeClassFromElement(sectionContainer, "active");
     removeClassFromElement(navbar, "active");
   }
+}
+
+function handleClickNavBtn(element) {
+  const mobileNavBtn = getDomElement(".nav-btn");
+  addClassToElement(element, "active");
+  const elementIndex = element.dataset.index;
+  const newSection = findSection(elementIndex);
+  const activeSection = getDomElement(".active-section");
+  removeClassFromElement(activeSection, "active-section");
+  addClassToElement(newSection, "active-section");
+  handleCliackMobileNavigationBtn(mobileNavBtn);
+}
+
+function findSection(index) {
+  const sections = getDomElements(".section-item");
+  var desiredSection;
+  sections.forEach((e, i) => {
+    e.dataset.index == index ? (desiredSection = e) : false;
+  });
+
+  return desiredSection;
 }
 
 window.addEventListener("click", (e) => {

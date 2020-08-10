@@ -11,29 +11,46 @@
   <body>
     <div class="nav-bar">
       <div class="nav-menu">
-        <div class="nav-menu-btn">
-          <a class="home">Home</a>
+        <div
+          class="nav-menu-btn"
+          data-index="0"
+          onclick="handleClickNavBtn(this)"
+        >
+          <a class="nav-btn-item">Home</a>
         </div>
-        <div class="nav-menu-btn">
-          <a class="home">Section 1</a>
+        <div
+          class="nav-menu-btn"
+          data-index="1"
+          onclick="handleClickNavBtn(this)"
+        >
+          <a class="nav-btn-item">About</a>
         </div>
-        <div class="nav-menu-btn">
-          <a class="home">Section 2</a>
+        <div
+          class="nav-menu-btn"
+          data-index="2"
+          onclick="handleClickNavBtn(this)"
+        >
+          <a class="nav-btn-item">News</a>
         </div>
-        <div class="nav-menu-btn">
-          <a class="home">Section 3</a>
+        <div
+          class="nav-menu-btn"
+          data-index="3"
+          onclick="handleClickNavBtn(this)"
+        >
+          <a class="nav-btn-item">Research</a>
         </div>
       </div>
     </div>
 
-    <div class="nav-btn" onclick="handleCliackNavigationBtn(this)">
+    <div class="nav-btn" onclick="handleCliackMobileNavigationBtn(this)">
       <div class="btn"></div>
     </div>
 
     <div class="sections-container">
-      <div class="section-item section-1">div 1</div>
-      <div class="section-item section-1">div 2</div>
-      <div class="section-item section-1">div 3</div>
+      <div class="section-item home active-section" data-index="0">Home</div>
+      <div class="section-item about" data-index="1">About</div>
+      <div class="section-item news" data-index="2">News</div>
+      <div class="section-item research" data-index="3">Reasearch</div>
     </div>
   </body>
   <script src="./handlers.js"></script>

@@ -12,10 +12,16 @@
 @black: #000000;
 @white: #ffffff;
 @red: #ff0000;
+@blue: #0000ff;
+@purple: #800080;
+@green: #008000;
+@trasparent: #ff000000;
+
+// @sectionItemsColors: darkslateblue mediumorchid seagreen steelblue
+//   @sectionItems: "home" "about" "news" "research";
 //------------------------------//
 //------Breakpoints-------------//
 //------------------------------//
-
 @mobile: 600px;
 @tablet: 900px;
 @desktop: 1200px;
@@ -73,7 +79,7 @@ body {
 
   &.active {
     .btn {
-      background-color: transparent;
+      background-color: @trasparent;
 
       &:before {
         top: 0;
@@ -98,7 +104,7 @@ body {
   min-height: 2rem;
   z-index: 5;
   background-color: fade(@black, 80);
-  animation: animatenavbar 3s forwards;
+  animation: animateNavBar 3s forwards;
 
   &.active {
     .display-flex();
@@ -111,7 +117,20 @@ body {
     justify-content: space-around;
 
     .nav-menu-btn {
-      a {
+      &.active {
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 0.09rem;
+          bottom: 0;
+          left: 0;
+          background-color: @white;
+        }
+      }
+
+      .nav-btn-item {
         color: @white;
         font-size: 1rem;
 
@@ -126,7 +145,7 @@ body {
 .sections-container {
   width: 100vw;
   height: 100vh;
-  background-color: @red;
+  background-color: @trasparent;
   transform-style: preserve-3d;
   transition: all 1.5s ease-in-out;
 
@@ -139,28 +158,37 @@ body {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: blue;
+    background-color: @blue;
     box-shadow: 0 -1rem 1rem fade(@black, 25);
-
     color: @white;
     font-size: 4rem;
 
-    &:first-of-type {
-      background-color: purple;
-      transform: translateZ(190px);
-    }
-
-    &:last-of-type {
-      background-color: Green;
-      transform: translateZ(-165px);
+    &.active-section {
+      transform: translateZ(0px) !important;
     }
   }
 }
 
+// Create a "guarded" mixin with conditional test
+.section-item-loop (@i) when (@i > 0) {
+  // Output the current counter
+  .section-item:nth-child(@{i}) {
+    background: hsl(@i * 10, 50%, 50%);
+    transform: translateZ(@i * -90px);
+  }
+
+  // The mixin calls itself, recursively,
+  // until the "@i > 0" condition is no longer met
+  .section-item-loop(@i - 1);
+}
+
+// Call the mixin with a counter to start the loop
+.section-item-loop(4);
+
 // -----------------------
 //  animation
 // -----------------------
-@keyframes animatenavbar {
+@keyframes animateNavBar {
   0% {
     opacity: 0;
     transform: translateY(-10px);
