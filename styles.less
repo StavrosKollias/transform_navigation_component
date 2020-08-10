@@ -1,0 +1,149 @@
+//------------------------------//
+//------Mixings-----------------//
+//------------------------------//
+
+.display-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@gray: #808080;
+@black: #000000;
+@white: #ffffff;
+@red: #ff0000;
+//------------------------------//
+//------Breakpoints-------------//
+//------------------------------//
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: @gray;
+}
+
+.nav-btn {
+  width: 4rem;
+  height: 4rem;
+  position: fixed;
+  z-index: 5;
+  top: 0.5rem;
+  left: 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .btn {
+    width: 2.5rem;
+    height: 0.3rem;
+    background-color: @white;
+    box-shadow: 0 0.1rem 0.1rem fade(@black, 20);
+    transform: translateY(1rem);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -0.5rem;
+      width: 2.5rem;
+      height: 0.3rem;
+      background-color: @white;
+      box-shadow: 0 0.1rem 0.1rem fade(@black, 20);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0.5rem;
+      width: 2.5rem;
+      height: 0.3rem;
+      background-color: @white;
+      box-shadow: 0 0.1rem 0.1rem fade(@black, 20);
+    }
+  }
+}
+
+.nav-bar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 8vh;
+  z-index: 5;
+  background-color: fade(@black, 80);
+  animation: animatenavbar 3s forwards;
+
+  &.active {
+    .display-flex();
+  }
+
+  .nav-menu {
+    .display-flex();
+    width: 100%;
+    min-height: 2rem;
+    justify-content: space-around;
+
+    .nav-menu-btn {
+      a {
+        color: @white;
+        font-size: 1rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.sections-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: @red;
+  transform-style: preserve-3d;
+  transition: all 1.5s ease-in-out;
+
+  &.active {
+    transform: translateY(1rem) rotateX(-65deg) rotateY(10deg);
+  }
+
+  .section-item {
+    .display-flex();
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    box-shadow: 0 -1rem 1rem fade(@black, 25);
+
+    color: @white;
+    font-size: 4rem;
+
+    &:first-of-type {
+      background-color: purple;
+      transform: translateZ(190px);
+    }
+
+    &:last-of-type {
+      background-color: Green;
+      transform: translateZ(-165px);
+    }
+  }
+}
+
+// -----------------------
+//  animation
+// -----------------------
+@keyframes animatenavbar {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
